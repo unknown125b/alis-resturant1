@@ -1,241 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ali’s Restaurant</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali’s Restaurant</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        /* 🌙 General Styling */
-        body {
-            margin: 0;
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            color: #000000;
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgb(0, 0, 0)), 
-                        url('images/alichef.png') no-repeat center center fixed;
-            background-size: cover;
-            overflow: hidden;
-            position: relative;
-        }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #000;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgb(0, 0, 0)),
+                url('images/alichef.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+  }
 
-        .overlay {
-            background: rgba(255, 255, 255, 0.85);
-            min-height: 100vh;
-            padding: 50px 0;
-        }
+  .overlay {
+    background: rgba(255, 255, 255, 0.8);
+    min-height: 100vh;
+    padding: 50px 0;
+  }
 
-        .title-section {
-            text-align: center;
-            margin-top: 20px;
-        }
+  .title-section {
+    text-align: center;
+    margin-top: 20px;
+  }
 
-        .title-section img {
-            width: 180px;
-            height: auto;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-        }
+  .title-section img {
+    width: 180px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  }
 
-        .title-section h1 {
-            font-size: 3.5rem;
-            color: #000000;
-            font-weight: 600;
-        }
+  .title-section h1 {
+    font-size: 3.5rem;
+    color: #000;
+    font-weight: 600;
+  }
 
-        .menu-section {
-            margin-top: 60px;
-        }
+  .menu-section {
+    margin-top: 60px;
+  }
 
-        .menu-column {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-        }
+  .menu-column {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+  }
 
-        .menu-column h3 {
-            border-bottom: 2px solid #000000;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+  .menu-column h3 {
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            font-size: 1.1rem;
-        }
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 1.1rem;
+  }
 
-        footer {
-            background-color: #000000;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            margin-top: 60px;
-            font-style: italic;
-        }
+  footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 60px;
+    font-style: italic;
+  }
 
-        /* 🥔 Horizontal Potato Orbit */
-        .potato {
-            position: fixed;
-            top: 50%;
-            width: 80px;
-            height: 80px;
-            transform: translateY(-50%);
-            animation: orbitAcross 8s linear infinite;
-            z-index: 9999;
-        }
+  /* Potato Animation */
+  .potato {
+    position: fixed;
+    top: 30%;
+    width: 80px;
+    height: 80px;
+    animation: spin 3s linear infinite, orbitX 10s linear infinite;
+    z-index: 1000;
+    cursor: pointer;
+  }
 
-        @keyframes orbitAcross {
-            0% {
-                left: -100px;
-                opacity: 0;
-                transform: translateY(-50%) rotate(0deg);
-            }
-            10% {
-                opacity: 1;
-            }
-            50% {
-                left: 100%;
-                opacity: 1;
-                transform: translateY(-50%) rotate(180deg);
-            }
-            90% {
-                opacity: 0;
-            }
-            100% {
-                left: -100px;
-                opacity: 0;
-                transform: translateY(-50%) rotate(360deg);
-            }
-        }
+  /* Biryani Animation */
+  .biryani {
+    position: fixed;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translateX(-50%);
+    animation: orbitY 8s linear infinite;
+    z-index: 1000;
+    cursor: pointer;
+  }
 
-        /* 🍛 Center Vertical Biryani Orbit */
-        .biryani {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 110px;
-            height: 110px;
-            animation: orbitVertical 9s ease-in-out infinite;
-            z-index: 9998;
-        }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 
-        @keyframes orbitVertical {
-            0% {
-                top: -120px;
-                opacity: 0;
-                transform: translateX(-50%) rotate(0deg);
-            }
-            10% {
-                opacity: 1;
-            }
-            50% {
-                top: 90%;
-                opacity: 1;
-                transform: translateX(-50%) rotate(180deg);
-            }
-            90% {
-                opacity: 0;
-            }
-            100% {
-                top: -120px;
-                opacity: 0;
-                transform: translateX(-50%) rotate(360deg);
-            }
-        }
+  @keyframes orbitX {
+    0% { left: -10%; }
+    50% { left: 110%; }
+    100% { left: -10%; }
+  }
 
-        /* 🔥 Secret Rick Roll Link */
-        .rickroll-link {
-            position: fixed;
-            bottom: 10px;
-            right: 15px;
-            color: white;
-            font-size: 1rem;
-            font-style: italic;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            z-index: 10000;
-        }
+  @keyframes orbitY {
+    0% { top: 10%; }
+    50% { top: 90%; }
+    100% { top: 10%; }
+  }
 
-        .rickroll-link:hover {
-            color: #ffcc00;
-            opacity: 1;
-            text-shadow: 0 0 10px #ffcc00;
-        }
-    </style>
+  /* Rick Roll Link */
+  .rickroll {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    color: white;
+    text-decoration: none;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .rickroll:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+</style>
 </head>
 
 <body>
-    <!-- 🥔 Potato orbiting left to right -->
-    <img src="images/potato.png" alt="Spinning Potato" class="potato">
 
-    <!-- 🍛 Biryani orbiting vertically in the center -->
-    <img src="images/biryani.png" alt="Orbiting Biryani" class="biryani">
+<!-- Orbiting Potato -->
+<a href="https://www.youtube.com/shorts/7joWo54DG3M?feature=share" target="_blank">
+  <img src="images/potato.png" class="potato" alt="Spinning Potato">
+</a>
 
-    <!-- 🌟 Secret Rick Roll Link -->
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
-       target="_blank" 
-       class="rickroll-link">
-       Secret Recipe 🔥
-    </a>
+<!-- Orbiting Biryani -->
+<a href="https://www.youtube.com/shorts/cz7mqpMTXZA?feature=share" target="_blank">
+  <img src="images/biryani.png" class="biryani" alt="Orbiting Biryani">
+</a>
 
-    <!-- Website Content -->
-    <div class="overlay">
-        <div class="container">
-            <div class="title-section">
-                <img src="images/ali.png" alt="Ali">
-                <h1><em>Ali’s Restaurant</em></h1>
-            </div>
-
-            <div class="menu-section">
-                <div class="row g-5">
-                    <!-- LEFT MENU COLUMN -->
-                    <div class="col-md-6">
-                        <div class="menu-column">
-                            <h3>Starters & Main Course</h3>
-
-                            <div class="menu-item"><span>Chicken Biryani</span><span>Rs. 750</span></div>
-                            <div class="menu-item"><span>Beef Karahi</span><span>Rs. 1200</span></div>
-                            <div class="menu-item"><span>Chicken Handi</span><span>Rs. 950</span></div>
-                            <div class="menu-item"><span>Mutton Korma</span><span>Rs. 1350</span></div>
-                            <div class="menu-item"><span>BBQ Platter</span><span>Rs. 1600</span></div>
-                            <div class="menu-item"><span>Chicken Tikka</span><span>Rs. 550</span></div>
-                            <div class="menu-item"><span>Seekh Kebabs</span><span>Rs. 600</span></div>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT MENU COLUMN -->
-                    <div class="col-md-6">
-                        <div class="menu-column">
-                            <h3>Drinks & Desserts</h3>
-
-                            <div class="menu-item"><span>Mango Shake</span><span>Rs. 250</span></div>
-                            <div class="menu-item"><span>Mint Lemonade</span><span>Rs. 200</span></div>
-                            <div class="menu-item"><span>Cold Coffee</span><span>Rs. 350</span></div>
-                            <div class="menu-item"><span>Soft Drinks</span><span>Rs. 150</span></div>
-                            <div class="menu-item"><span>Gulab Jamun</span><span>Rs. 300</span></div>
-                            <div class="menu-item"><span>Kheer</span><span>Rs. 280</span></div>
-                            <div class="menu-item"><span>Chocolate Lava Cake</span><span>Rs. 400</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            © 2025 Ali’s Restaurant | Where Taste Meets Elegance
-        </footer>
+<div class="overlay">
+  <div class="container">
+    <div class="title-section">
+      <img src="images/ali.png" alt="Ali">
+      <h1>Ali’s Restaurant</h1>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="menu-section">
+      <div class="row g-5">
+        <!-- LEFT MENU COLUMN -->
+        <div class="col-md-6">
+          <div class="menu-column">
+            <h3>Starters & Main Course</h3>
+
+            <div class="menu-item"><span>Chicken Biryani</span><span>Rs. 750</span></div>
+            <div class="menu-item"><span>Beef Karahi</span><span>Rs. 1200</span></div>
+            <div class="menu-item"><span>Chicken Handi</span><span>Rs. 950</span></div>
+            <div class="menu-item"><span>Mutton Korma</span><span>Rs. 1350</span></div>
+            <div class="menu-item"><span>BBQ Platter</span><span>Rs. 1600</span></div>
+            <div class="menu-item"><span>Chicken Tikka</span><span>Rs. 550</span></div>
+            <div class="menu-item"><span>Seekh Kebabs</span><span>Rs. 600</span></div>
+          </div>
+        </div>
+
+        <!-- RIGHT MENU COLUMN -->
+        <div class="col-md-6">
+          <div class="menu-column">
+            <h3>Drinks & Desserts</h3>
+
+            <div class="menu-item"><span>Mango Shake</span><span>Rs. 250</span></div>
+            <div class="menu-item"><span>Mint Lemonade</span><span>Rs. 200</span></div>
+            <div class="menu-item"><span>Cold Coffee</span><span>Rs. 350</span></div>
+            <div class="menu-item"><span>Soft Drinks</span><span>Rs. 150</span></div>
+            <div class="menu-item"><span>Gulab Jamun</span><span>Rs. 300</span></div>
+            <div class="menu-item"><span>Kheer</span><span>Rs. 280</span></div>
+            <div class="menu-item"><span>Chocolate Lava Cake</span><span>Rs. 400</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Ali’s Restaurant | Where Taste Meets Elegance
+  </footer>
+</div>
+
+<!-- Rick Roll Link -->
+<a class="rickroll" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Secret Link 😏</a>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
